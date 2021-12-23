@@ -54,7 +54,18 @@ def anoExtenso(ano):
         	    	return f'{milhares[ano[0]]} {centenas[ano[1]]} e {numeros[ano[2] + ano[3]]}'
         	    else:
         	    	return f'{milhares[ano[0]]} {centenas[ano[1]]} e {dezenas[ano[2]+"0"]} e {numeros[ano[3]]}'
-
+    else:
+      		if len(ano) == 2:
+      			if int(ano) > int(anoAtual[2] + anoAtual[3]):
+      				if ano[1] == "0":
+      					return f'{milhares[str(int(anoAtual[0]) - 1)]} {centenas[str(9)]} e {dezenas[ano[0] + "0"]}'
+      				else:
+      					return f'{milhares[str(int(anoAtual[0]) - 1)]} {centenas[str(9)]} e {dezenas[ano[0] + "0"]} e {numeros[ano[1]]}'
+      			else:
+      				if anoAtual[1] == "0":
+      					return f'{milhares[anoAtual[0]]} e {dezenas[ano[0] + "0"]} e {numeros[ano[1]]}'
+      				else:
+      					return f'{milhares[anoAtual[0]]} {centenas[anoAtual[1]]} e {dezenas[ano[0] + "0"]} e {numeros[ano[1]]}'
 
 data = input("Escolha uma data ('dd/mm/aaaa'):\n")
 data = data.split("/")
