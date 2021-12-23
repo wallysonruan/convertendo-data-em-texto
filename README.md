@@ -1,4 +1,4 @@
-# pythonRandomCodes
+<h1>pythonRandomCodes</h1>
 <details>
 <summary>"numero2texto": Conversor de DATA para TEXTO</summary>
 <br>
@@ -28,5 +28,30 @@
       </ul>
     </li>
     <li>Laço de repetição para que o usuário possa escolher outra data sem precisar reiniciar o programa.</li>
+  </ul>
+</details>
+<!---->
+<details>
+<summary>"date2text-v2": Conversor de DATA para TEXTO</summary>
+<br>
+<h2>Meta Inicial:</h2>
+  <ul>
+    <li>Receber uma data numérica, dia e mês, e devolver ela em formato de texto ("por extenso"). <time datetime="2021-12-22">(CONCLUÍDA)</time></li>
+  </ul>
+  <h2>Metas Atuais:</h2>
+  <ul>
+  <time datetime="2021-12-23">
+    <li>Receber uma data numérica, dia, mês e ano, e devolver ela em formato de texto ("por extenso"). (CONCLUÍDA)</li>
+    <li>Adicionar opção de sistema de datas, ex.: dd/mm/aaaa e mm/dd/aaaa.</li>
+    <li>Condicionar, com uma regEx e um laço de repetição, o input do usuário. (CONCLUÍDA)</li>
+    <li>Laço de repetição para que o usuário possa converter outras datas sem que o programa encerre.</li>
+    <li>Adicionar possibilidade de ter a data retornada dentro de um texto definido pelo usuário, usando a lógica de TAG.</li>
+   </time>
+  </ul>
+<h3>Pendências:</h3>
+  <ul>
+    <li>Laço de repetição para que o usuário possa escolher outra data sem precisar reiniciar o programa.</li>
+    <li>Opção de idioma.</li>
+    <li>Opção de formato de data.</li>
   </ul>
 </details>
