@@ -1,29 +1,28 @@
-'''Receber uma data numérica e retornar ela em texto'''
+'''FUNÇÃO: Receber uma data numérica e retornar ela em texto'''
+#--------------------BIBLIOTECAS-------------------------
 
 #Biblioteca que lida com datas e horários:
 from datetime import date
+#
+#Biblioteca que lida com regEx (regular expressions)
+import re
+#
+#Biblioteca que interage com o sistema operacional
+from os import system as s
 
-#Objeto que retorna o mês atual em número:
-anoAtual = str(date.today().year)
+#--------------------FUNÇÕES-------------------------
 
-#Dicionario com os números em extenso:
-dicionario = {"pt-BR":{
-"unidades":{"1": "um", "2": "dois", "3": "três", "4": "quatro", "5": "cinco", "6": "seis", "7": "sete", "8": "oito", "9": "nove"},
-
-"uniIrregulares":{"11":"onze","12":"doze","13":"treze","14":"quatorze","15":"quinze","16":"dezesseis","17":"dezessete","18":"dezoito","19":"dezenove"},
-  
-"dezenas":{"10": "dez", "20": "vinte", "30": "trinta","40":"quarenta","50":"cinquenta","60":"sessenta","70":"setenta","80":"oitenta","90":"noventa"},
-
-"centenas":{"1":"cento", "2":"duzentos","3":"trezentos","4":"quatrocentos","5":"quinhentos", "6":"seiscentos", "7":"setecentos", "8": "oitocentos", "9":"novecentos"},
-
-"milharIrregular":{"1":"mil"},
-
-"meses":{"1":"janeiro","2":"fevereiro","3":"março","4":"abril","5":"maio","6":"junho","7":"julho","8":"agosto","9":"setembro","10":"outubro","11":"novembro","12":"dezembro"}
-}}
-
-data = input("Escolha uma data ('dd/mm/aaaa'):\n")
-data = data.split("/")
-
+#Função que limpa o terminal
+def clear():
+  return s('clear')
+#
+#Função que, além de verificar o tamanho do input, usa a RegEx acima para validar o input do usuário
+def inputValidação(entrada):
+  if len(re.findall(dataFormato,entrada)) == 0 and (len(entrada) < 6 or len(entrada) > 10):
+    return False
+  else:
+    return True
+#
 '''
 #Função que trata o dia e retorna seu formato por extenso.
 def diaExtenso(dia):
@@ -79,3 +78,29 @@ def anoExtenso(ano):
                 else:
                     return f'{milhares[anoAtual[0]]} {centenas[anoAtual[1]]} e {dezenas[ano[0] + "0"]} e {numeros[ano[1]]}'
 '''
+#-----------------INFORMAÇÕES ADICIONAIS-----------------
+
+#Dicionario com os números em extenso:
+dicionario = {"pt-BR":{
+"unidades":
+{"1": "um", "2": "dois", "3": "três", "4": "quatro", "5": "cinco", "6": "seis", "7": "sete", "8": "oito", "9": "nove"},
+"uniIrregulares":
+{"11":"onze","12":"doze","13":"treze","14":"quatorze","15":"quinze","16":"dezesseis","17":"dezessete","18":"dezoito","19":"dezenove"},
+"dezenas":
+{"10": "dez", "20": "vinte", "30": "trinta","40":"quarenta","50":"cinquenta","60":"sessenta","70":"setenta","80":"oitenta","90":"noventa"},
+"centenas":
+{"1":"cento", "2":"duzentos","3":"trezentos","4":"quatrocentos","5":"quinhentos", "6":"seiscentos", "7":"setecentos", "8": "oitocentos", "9":"novecentos"},
+"milharIrregular":
+{"1":"mil"},
+"meses":
+{"1":"janeiro","2":"fevereiro","3":"março","4":"abril","5":"maio","6":"junho","7":"julho","8":"agosto","9":"setembro","10":"outubro","11":"novembro","12":"dezembro"}
+}}
+#RegEx para tratar validar o input do usuário
+dataFormato = "[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}|[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2}"
+
+#--------------------PROGRAMA-------------------------
+
+data = input("Escolha uma data:\n")
+while inputValidação(data) == False:
+    clear()
+    data = input("FORMATO DE DATA INVÁLIDO!\n\nEscolha outra data:\n")
