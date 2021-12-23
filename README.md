@@ -1,6 +1,6 @@
 # pythonRandomCodes
 <details>
-<summary>Conversor de DATA para TEXTO</summary>
+<summary>"numero2texto": Conversor de DATA para TEXTO</summary>
 <br>
 <p>Escrevi esse conversor porque o Felipe recebeu, na faculdade, a tarefa de escrever um conversor de data de aniversário para texto. Comecei a escrever e achei interessante a ideia, fui além e escrevi um conversor de datas que não se prende a data alguma e sim a tipos, ou seja, mesmo nos anos 3k, 5k, ... o conversor irá funcionar.</p>
 <p>Por conta desse pequeno projeto, usei pela primeira vez o tipo de dado DICIONARIO em Python e a biblioteca nativa DATETIME, além de estruturas condicionais com várias outras dentro.</p>
