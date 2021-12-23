@@ -1,4 +1,4 @@
-'''Receber uma data numéria e retornar ela em texto'''
+'''Receber uma data numérica e retornar ela em texto'''
 
 #Biblioteca que lida com datas e horários:
 from datetime import date
