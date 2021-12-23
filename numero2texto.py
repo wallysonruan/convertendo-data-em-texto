@@ -37,22 +37,24 @@ def mesExtenso(mes):
 #Função que trata o ano e retorna seu formato por extenso
 def anoExtenso(ano):
     ano = ano[2]
-    if len(ano) == 4 and (ano[1] + ano[2] + ano[3]) == "000":
-        return f'{milhares[ano[0]]}'
-    elif len(ano) == 4 and (ano[2] + ano[3]) == "00":
-        return f'{milhares[ano[0]]} e {centenas[ano[1]]}'
-    elif len(ano) == 4 and (ano[1] + ano[2]) == "00" and ano[3] != "0":
-        return f'{milhares[ano[0]]} e {numeros[ano[3]]}'
-    elif len(ano) == 4 and ano[1] == "0" and (ano[2] + ano[3]) != "00":
-        if ano[3] == "0":
-            return f'{milhares[ano[0]]} e {dezenas[ano[2]+"0"]}'
+    if len(ano) == 4:
+        if (ano[1] + ano[2] + ano[3]) == "000":
+        	return f'{milhares[ano[0]]}'
+        if (ano[2] + ano[3]) == "00":
+        	return f'{milhares[ano[0]]} e {centenas[ano[1]]}'
+        elif (ano[1] + ano[2]) == "00" and ano[3] != "0":
+        	return f'{milhares[ano[0]]} e {numeros[ano[3]]}'
+        elif ano[1] == "0" and (ano[2] + ano[3]) != "00":
+        	    if ano[3] == "0":
+        	    	return f'{milhares[ano[0]]} e {dezenas[ano[2]+"0"]}'
+        	    else:
+        	    	return f'{milhares[ano[0]]} e {numeros[ano[2] + ano[3]]}'
         else:
-            return f'{milhares[ano[0]]} e {numeros[ano[2] + ano[3]]}'
-    else:
-        if ano[3] != "0":
-            return f'{milhares[ano[0]]} {centenas[ano[1]]} e {numeros[ano[2] + ano[3]]}'
-        else:
-            return f'{milhares[ano[0]]} {centenas[ano[1]]} e {dezenas[ano[2]+"0"]} e {numeros[ano[3]]}'
+        	    if ano[3] != "0":
+        	    	return f'{milhares[ano[0]]} {centenas[ano[1]]} e {numeros[ano[2] + ano[3]]}'
+        	    else:
+        	    	return f'{milhares[ano[0]]} {centenas[ano[1]]} e {dezenas[ano[2]+"0"]} e {numeros[ano[3]]}'
+
 
 data = input("Escolha uma data ('dd/mm/aaaa'):\n")
 data = data.split("/")
