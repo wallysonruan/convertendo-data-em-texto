@@ -40,8 +40,10 @@ def data_conversor(data):
     #TRATAMENTO DO DIA
     if int(dia) > 10 and int(dia) < 20:
     	dia = dicionario["pt-BR"]["unidades-Irregulares"][dia]
-    elif int(dia) == 10 or int(dia) > 20:
-    	dia = dicionario["pt-BR"]["dezenas"][dia[0]]
+    elif (int(dia)%10) == 0:
+        dia = dicionario["pt-BR"]["dezenas"][dia[0]]
+    elif int(dia) > 20:
+        dia = f'{dicionario["pt-BR"]["dezenas"][dia[0]]} e {dicionario["pt-BR"]["unidades"][dia[1]]}'
     else:
         if dia == "1":
             dia = dicionario["pt-BR"]["unidades-Irregulares"][dia]
