@@ -23,7 +23,7 @@
     <li>Aceitar anos constituídos apenas de unidades, dezenas ou centenas.</li>
     <li>Aceitar "anos negativos", isto é, anos anteriores a Cristo (delimitador atual).</li>
   </ul>
- <h3>Aprendizado:</h3>
+ <h2>Aprendizado:</h2>
   <ul>
     <li>Aprendi a estrutura de dados "dicionario", similar ao objeto do Javascript, e como acessá-la (tanto dicionários simples, quanto os múltiplos).</li>
     <li>A escrever expressões regulares, o que me levou a aprender e usar a biblioteca nativa "re", e as usar para validar input do usuário.</li>
