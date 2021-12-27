@@ -1,0 +1,136 @@
+import os, datetime, re
+
+#FUNÇÕES AUXILIARES:
+
+def clear():
+    if os.name == "nt":
+        os.system('cls')
+    else:
+        os.system('clear')
+
+#FUNÇÕES DE VALIDAÇÃO:
+
+#Verifica se o texto escolhido está de acordo com a expressão regular passada como primeiro parâmetro.
+def regex(regex, texto):
+    if len(re.findall(regex,texto)) > 0:
+        return True
+    else:
+        return False
+
+#Verifica se o input está de acordo com a expressão regular que permite o seguinte tipo de data: O dia e mês conterem de 1 a dois caracteres cada, e o ano conter de 2 a 4 caracteres.
+def input_validacao(data):
+    if len(data) < 6 or len(data) > 10 or regex("[a-zA-Z]",data):
+        return False
+    else:
+        if not regex("[0-9]{1,2}\/[0-9]{1,2}\/[0-9][0-9]|[0-9]{1,2}\/[0-9]{1,2}\/[0-9][0-9][0-9]", data):
+            return False
+        else:
+            return True
+#FUNÇÃO QUE CONVERTE EM TEXTO:
+def data_conversor(data):
+    try:
+    	dia =  str(datetime.datetime.strptime(data, "%d/%m/%Y").day)
+    	mes = str(datetime.datetime.strptime(data, "%d/%m/%Y").month)
+    except:
+    	dia =  str(datetime.datetime.strptime(data, "%d/%m/%y").day)
+    	mes = str(datetime.datetime.strptime(data, "%d/%m/%y").month)
+      
+    ano = (data.split("/"))[2]
+    
+    #TRATAMENTO DO DIA
+    if int(dia) > 10 and int(dia) < 20:
+    	dia = dicionario["pt-BR"]["unidades-Irregulares"][dia]
+    elif int(dia) == 10 or int(dia) > 20:
+    	dia = dicionario["pt-BR"]["dezenas"][dia[0]]
+    else:
+        if dia == "1":
+            dia = dicionario["pt-BR"]["unidades-Irregulares"][dia]
+        else:
+           	dia = dicionario["pt-BR"]["unidades"][dia[0]]
+    
+    #TRATAMENTO DO MES
+    mes = dicionario["pt-BR"]["meses"][mes]
+    
+    #TRATAMENTO DO ANO
+    if len(ano) == 2:
+        if int(ano) <= (datetime.datetime.today().year % 100):
+            ano = f'{str(datetime.datetime.today().year)[0:2]}{ano}'
+        else:
+            ano = f'{str(datetime.datetime.today().year - 100)[0:2]}{ano}'
+    #
+    milenio = ano[0]
+    seculo = ano[1]
+    decada = ano[2]
+    unidade = ano[3]
+    
+    #MILENIO
+    if milenio == "1":
+    	milenio = dicionario["pt-BR"]["milhar-Irregular"][milenio]
+    else:
+    	milenio = f'{dicionario["pt-BR"]["unidades"][milenio]} mil'
+  
+    #SECULO
+    if seculo == "1" and decada != "0":
+    	seculo = dicionario["pt-BR"]["centena-Irregular"][seculo]
+    else:
+    	if seculo != "0":
+    		seculo = dicionario["pt-BR"]["centenas"][seculo]
+    	else:
+    		seculo = ""
+    
+    #DECADA
+    if int(decada) > 1 and int(decada) < 2:
+    	decada = dicionario["pt-BR"]["unidades-Irregulares"][decada]
+    else:
+    	if decada != "0":
+    		decada = f'{dicionario["pt-BR"]["dezenas"][decada]}'
+    	else:
+    		decada = ""
+    
+    #UNIDADE
+    if unidade != "0":
+    	unidade = f'{dicionario["pt-BR"]["unidades"][unidade]}'
+    else:
+    	unidade = ""
+    
+    #FORMATANDO A FRASE A SER RETORNADA
+    #dia e mês
+    dia_mes = f'{dia.capitalize()} de {mes} de'
+    
+    #ano em seus varios formatos
+    #a000
+    if regex("[1-9][0][0][0]",ano):
+    	return f'{dia_mes.capitalize()} {milenio}.'
+    #aa00
+    elif  regex("[1-9][1-9'][0][0]",ano):
+    	return f'{dia_mes.capitalize()} {milenio} {seculo}.'
+    #aaa0
+    elif  regex("[1-9][1-9][1-9][0]",ano):
+    	return f'{dia_mes.capitalize()} {milenio} {seculo} e {decada}.'
+    #aaaa
+    elif  regex("[1-9][1-9][1-9][1-9]",ano):
+    	return f'{dia_mes.capitalize()} {milenio} {seculo} e {decada} e {unidade}.'
+    #a0a0
+    elif  regex("[1-9][0][1-9][0]",ano):
+    	return f'{dia_mes.capitalize()} {milenio} e {decada}.'
+    #a0aa
+    elif  regex("[1-9][0][1-9][1-9]",ano):
+    	return f'{dia_mes.capitalize()} {milenio} e {decada} e {unidade}.'
+    #a00a
+    elif regex("[1-9][0][0][1-9]",ano):
+    	return f'{dia_mes.capitalize()} {milenio} e {unidade}.'
+
+#DADOS AUXILIARES:
+dicionario = {"pt-BR": {"unidades": {"1": "um", "2": "dois", "3": "três", "4": "quatro", "5": "cinco", "6": "seis", "7": "sete", "8": "oito", "9": "nove"}, "unidades-Irregulares": {"1": "primeiro", "11": "onze", "12": "doze", "13": "treze", "14": "quatorze", "15": "quinze", "16": "dezesseis", "17": "dezessete", "18": "dezoito", "19": "dezenove"}, "dezenas": {"1": "dez", "2": "vinte", "3": "trinta", "4": "quarenta", "5": "cinquenta", "6": "sessenta", "7": "setenta", "8": "oitenta", "9": "noventa"}, "centenas": {"1": "cem", "2": "duzentos", "3": "trezentos", "4": "quatrocentos", "5": "quinhentos", "6": "seiscentos", "7": "setecentos", "8": "oitocentos", "9": "novecentos"}, "milhar-Irregular": {"1": "mil"}, "centena-Irregular": {"1": "cento"}, "meses": {"1": "janeiro", "2": "fevereiro", "3": "março", "4": "abril", "5": "maio", "6": "junho", "7": "julho", "8": "agosto", "9": "setembro", "10": "outubro", "11": "novembro", "12": "dezembro"}}}
+flag = True
+
+#PROGRAMA
+while flag == True:
+    data = input("Escolha uma data:\n")
+    while not input_validacao(data):
+        clear()
+        data = input("[FORMATO INCORRETO!]\nExemplo de formatos aceitos:\n     Dia com até dois caracteres;\n     Mês com até dois caracteres;\n     Ano de 2 até 4 caracteres.\n\nEscolha outra data:\n")
+        clear()
+    clear()
+    flag = int(input(f'{data_conversor(data)}\n\nAperte [ 1 ] para converter outra data.\n'))
+    clear()
