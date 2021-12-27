@@ -3,7 +3,7 @@
 <summary>"date2text": Conversor de DATA para TEXTO</summary>
 <br>
 <time datetime="2021-12-22"><p>Escrevi esse conversor porque um amigo (Felipe) recebeu, na faculdade, a tarefa de escrever um conversor de data de aniversário para texto, comentou comigo e decidi tentar resolver. Comecei a escrever e achei interessante a ideia, fui além e escrevi um conversor de datas que não se prende a data alguma e sim a tipos, ou seja, mesmo nos anos 3k, 5k, ... o conversor irá funcionar.</p>
-<time datetime="2021-12-27"><p>Esse conversor me tomou bastante tempo porque eu o refatorei várias vezes e a cada refatoração eu aprendia algo novo e logo implementava.</p>
+<time datetime="2021-12-27"><p>Esse conversor me tomou bastante tempo porque eu o refatorei várias vezes e a cada refatoração eu aprendia algo novo e logo implementava. A primeira versão funcional é a 4, pois as outras eu refatorei e/ou mudei totalmente a lógica do código.</p>
   <h2>Meta Inicial:</h2>
   <ul>
     <li>Receber uma data numérica, dia e mês, e devolver ela em formato de texto ("por extenso"). <time datetime="2021-12-22">(CONCLUÍDA)</time></li>
